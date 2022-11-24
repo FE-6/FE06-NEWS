@@ -23,7 +23,7 @@ function App(props) {
       <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/newsdetail" element={<NewsDetail />} />
+        <Route path="/newsdetail/:id" element={<NewsDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/formdata" element={<FormData />} />

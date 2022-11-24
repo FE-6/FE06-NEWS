@@ -8,38 +8,37 @@ import { useParams } from "react-router-dom";
 const URL = "https://6353739ca9f3f34c3752aeb7.mockapi.io/ayf/article/"
 
 function NewsDetail () {
-    // const [articleId, setarticleId] = useState(true);
-    // const params = useParams();
-    // const {name} = params
-    const [news, setNews] = useState([]);
-    
+    const params = useParams();
+    const {id} = params
+    console.log(id)
+    const [news, setNews] = useState();
     
     useEffect(() => {
-    axios.get(URL).then((response) => {
+    axios.get(URL+id).then((response) => {
       setNews(response.data);
-    //   setarticleId(false);
     });
   }, []);
 
   console.log(news);
 
+
     return (
         <>
         <Navbar/>
         {
-            news.map ((article) => (
-                <div className="container mt-3" key={article.id}>
+            news ? (
+                <div className="container mt-3" key={news.id}>
                 <div className="berita-body container mx-5 mt-4">
                     <NewsDetailCard
-                        title={article.title}
-                        name={article.name}
-                        createdAt={article.createdAt}
-                        image={article.image}
-                        content={article.content}
+                        title={news.title}
+                        name={news.name}
+                        createdAt={news.createdAt}
+                        image={news.image}
+                        content={news.content}
                     />
                 </div>
             </div>
-            ))
+            ) : <h1>loading</h1>
         
         }
         </>
